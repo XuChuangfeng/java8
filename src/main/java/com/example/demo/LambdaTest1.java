@@ -23,6 +23,13 @@ public class LambdaTest1 {
         LambdaInterface2 lambdaInterface21 = (str) -> System.out.println("使用Lambda表达式简化！");
         lambdaInterface21.test("");
         lambdaInterface21.defaultTest();
+
+        LambdaInterface3 lambdaInterface31 = (str) -> {System.out.println("使用lambda表达式简化！");return str;};
+        System.out.println(lambdaInterface31.test("hehe"));
+
+        // 可以将返回值都省略，会自动把语句执行的结果当作返回值，str做为入参，也作为返回值
+        LambdaInterface3 lambdaInterface32 = str -> "hello," + str;
+        System.out.println(lambdaInterface32.test("hehe"));
     }
 }
 @FunctionalInterface
@@ -35,4 +42,14 @@ interface LambdaInterface2 {
     default void defaultTest() {
         System.out.println("default function in functional interface!");
     }
+}
+
+@FunctionalInterface
+interface LambdaInterface3 {
+    /**
+     * 有返回值
+     * @param str
+     * @return
+     */
+    String test(String str);
 }
