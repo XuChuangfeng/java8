@@ -19,7 +19,8 @@ public class LambdaTest1 {
         LambdaInterface1 lambdaInterface12 = () -> System.out.println("使用lambda表达式简化！");
         lambdaInterface12.test();
 
-        LambdaInterface2 lambdaInterface21 = (String str) -> System.out.println("使用Lambda表达式简化！");
+        // ()中可以不指定参数的类型，会自动推断参数类型
+        LambdaInterface2 lambdaInterface21 = (str) -> System.out.println("使用Lambda表达式简化！");
         lambdaInterface21.test("");
         lambdaInterface21.defaultTest();
     }
