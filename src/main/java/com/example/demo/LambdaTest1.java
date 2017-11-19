@@ -24,12 +24,21 @@ public class LambdaTest1 {
         lambdaInterface21.test("");
         lambdaInterface21.defaultTest();
 
-        LambdaInterface3 lambdaInterface31 = (str) -> {System.out.println("使用lambda表达式简化！");return str;};
+        // 只有一个入参，可以把参数的括号省略
+        LambdaInterface3 lambdaInterface31 = str -> {System.out.println("使用lambda表达式简化！");return str;};
         System.out.println(lambdaInterface31.test("hehe"));
 
-        // 可以将返回值都省略，会自动把语句执行的结果当作返回值，str做为入参，也作为返回值
+        // 方法体只有一条语句的时候，可以将返回值都省略,同时也需要将{}省略；
+        // 会自动把语句执行的结果当作返回值，str做为入参，也作为返回值
         LambdaInterface3 lambdaInterface32 = str -> "hello," + str;
         System.out.println(lambdaInterface32.test("hehe"));
+
+        // lambda表达式访问了本地变量，跟匿名内部类一样，本地变量必须是final类型，否则编译异常。
+        // 如果没有加final，程序会自动为你加上final声明。
+        String finalStr = "123";
+        LambdaInterface3 lambdaInterface33 = str -> "hello," + finalStr;
+        String test = lambdaInterface33.test("");
+        System.out.println(test);
     }
 }
 @FunctionalInterface
@@ -43,13 +52,7 @@ interface LambdaInterface2 {
         System.out.println("default function in functional interface!");
     }
 }
-
 @FunctionalInterface
 interface LambdaInterface3 {
-    /**
-     * 有返回值
-     * @param str
-     * @return
-     */
     String test(String str);
 }
