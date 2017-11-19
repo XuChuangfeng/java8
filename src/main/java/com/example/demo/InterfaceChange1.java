@@ -15,7 +15,7 @@ public class InterfaceChange1 implements Interface1,Interface2,Interface3 {
     /**
      * 可以通过super调用父级实现类的默认方法，通过Interface1.super调用Interface2的默认方法
      */
-    public void test() { Interface1.super.test();}
+    public void test() {Interface1.super.test();}
 }
 /**
  * 含有default方法的interface1继承了含有default方法的interface2
@@ -48,13 +48,26 @@ interface Interface4 extends Interface5,Interface6{
     /**
      * 同名默认方法，解决异常。
      */
-    default void test() {}
+    default void test() {System.out.println(111);}
+
+    /**
+     * 子接口可以通过默认方法实现父接口的抽象方法
+     */
+    @Override
+    default void abstractMethod() {}
 }
 interface Interface5 {
+    void abstractMethod();
     default void test() {}
 }
 interface Interface6 {
     default void test() {}
+}
+class Class1 implements Interface4, Interface5, Interface6{
+    public static void main(String[] args) {
+        Class1 class1 = new Class1();
+        class1.test();
+    }
 }
 // -----------------------------------------------------------
 class InterfaceChange2 implements Interface7,Interface8 {
